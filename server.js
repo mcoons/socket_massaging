@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 var localport = 3001;
 
-const mongoUser = process.env.MONGOUSER || "messageuser";
-const mongoPwd = process.env.MONGOPWD || "m3ssag3us3r";
+const mongoUser = process.env.xMONGOUSER || "messageuser";
+const mongoPwd = process.env.xMONGOPWD || "m3ssag3us3r";
 const dbURL = process.env.DBURL || "ds129393.mlab.com:29393/messages";
 
 console.log("user",mongoUser);
