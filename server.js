@@ -15,6 +15,10 @@ const mongoUser = process.env.MONGOUSER || "messageuser";
 const mongoPwd = process.env.MONGOPWD || "m3ssag3us3r";
 const dbURL = process.env.DBURL || "ds129393.mlab.com:29393/messages";
 
+console.log("user",mongoUser);
+console.log("pwd", mongoPwd);
+console.log("url",dbURL);
+
 const dburl = `mongodb://${mongoUser}:${mongoPwd}@${dbURL}`
 
 const port = process.env.PORT || localport;
