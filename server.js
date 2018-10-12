@@ -9,15 +9,21 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var dburl = "mongodb://messageuser:m3ssag3us3r@ds129393.mlab.com:29393/messages"
 var localport = 3001;
+
+const mongoUser = process.env.MONGOUSER || "messageuser";
+const mongoPwd = process.env.MONGOPWD || "m3ssag3us3r";
+const dbURL = process.env.DBURL || "ds129393.mlab.com:29393/messages";
+
+const dburl = `mongodb://${mongoUser}:${mongoPwd}@${dbURL}`
+
+const port = process.env.PORT || localport;
+
 
 var Message = mongoose.model("Message", {
     name: String,
     message: String
-
 })
-
 
 app.get("/messages", (req,res) => {
     Message.find({}, (err, messages) => {
@@ -42,10 +48,11 @@ io.on('connection', (socket) => {
     console.log("user has connected");
 })
 
-mongoose.connect(dburl, { useNewUrlParser: true }, (err) => {
-    console.log('mongo db connection', err)
-})
+mongoose.connect(dburl, 
+                { useNewUrlParser: true }, 
+                (err) => { console.log('mongo db connection made with error:', err)}
+)
 
-var server = http.listen(localport, () => {
-    console.log("Server is listening on port", server.address().port);
+var server = http.listen(port, () => {
+    console.log("Server is listening on port", port);
 });
