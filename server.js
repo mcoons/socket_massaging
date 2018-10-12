@@ -11,7 +11,7 @@ app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// app.use(cors);
+app.use(cors);
 
 var localport = 3001;
 
