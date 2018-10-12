@@ -1,9 +1,12 @@
 var express = require('express');
+var cors = require("cors");
 var bodyParser = require("body-parser");
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
+
+app.use(cors);
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
